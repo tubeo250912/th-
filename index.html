@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sinh Nhật của em 😊</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('images/background.jpg') center/cover no-repeat fixed;
+      font-family: Arial, sans-serif;
+    }
+    .overlay {
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.1);
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .login-box {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 2px solid white;
+    }
+    .title {
+      font-size: 20px;
+      color: white;
+      margin-bottom: 20px;
+    }
+    .input-display {
+      width: 160px;
+      height: 40px;
+      font-size: 24px;
+      margin: 0 auto 10px;
+      background: white;
+      border-radius: 10px;
+      padding: 5px;
+      letter-spacing: 5px;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 50px);
+      gap: 10px;
+      justify-content: center;
+    }
+    .keypad button {
+      font-size: 20px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: white;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+    .shake {
+      animation: shake 0.3s;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-5px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="login-box" id="loginBox">
+      <img src="images/avatar.jpg" alt="Avatar" class="avatar">
+      <div class="title">Sinh Nhật của em 😊</div>
+      <div class="input-display" id="passwordDisplay"> </div>
+      <div class="keypad">
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button onclick="clearPassword()">❌</button>
+        <button onclick="appendNumber('0')">0</button>
+        <button onclick="checkPassword()">✔️</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let password = "";
+    const passwordDisplay = document.getElementById("passwordDisplay");
+    const loginBox = document.getElementById("loginBox");
+
+    function appendNumber(num) {
+      if (password.length < 6) {
+        password += num;
+        passwordDisplay.textContent = "*".repeat(password.length);
+      }
+    }
+
+    function clearPassword() {
+      password = "";
+      passwordDisplay.textContent = "";
+    }
+
+    function checkPassword() {
+      if (password === "1306") {
+        window.location.href = "main.html";
+      } else {
+        loginBox.classList.add("shake");
+        setTimeout(() => loginBox.classList.remove("shake"), 300);
+        clearPassword();
+      }
+    }
+  </script>
+</body>
+</html>
